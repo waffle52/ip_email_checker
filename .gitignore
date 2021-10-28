@@ -1,0 +1,3 @@
+# ignore text & env files
+*.txt
+*.env
