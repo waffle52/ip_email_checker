@@ -39,8 +39,8 @@ GMAIL_PASSWORD = os.environ.get("EmailPassword")
 class Emailer:
     def sendmail(self, recipient, subject, content):
         # Create Headers
-        headers = ["From: " + GMAIL_USERNAME, "Subject: " + subject, "To: "
-                   + recipient, "MIME-Version: 1.0", "Content-Type: text/html"]
+        headers = ["From: " + GMAIL_USERNAME, "Subject: " + subject, "To: " +
+                   recipient, "MIME-Version: 1.0", "Content-Type: text/html"]
         headers = "\r\n".join(headers)
         # Connect to Gmail Server
         session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
@@ -50,8 +50,8 @@ class Emailer:
         # Login to Gmail
         session.login(GMAIL_USERNAME, GMAIL_PASSWORD)
         # Send Email & Exit
-        session.sendmail(GMAIL_USERNAME, recipient, headers + "\r\n\r\n"
-                         + content)
+        session.sendmail(GMAIL_USERNAME, recipient, headers + "\r\n\r\n" +
+                         content)
         session.quit
 
 
@@ -79,6 +79,7 @@ def main() -> int:
         exit(0)
     if (web_info.text != current):
         change_ip(sender, str(web_info.text))
+        create_ip_file(str(web_info.text))
         exit(0)
     return (0)
 
